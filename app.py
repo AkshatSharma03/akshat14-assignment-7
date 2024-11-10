@@ -6,7 +6,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from scipy import stats
-
+import secrets
+print(secrets.token_hex(16))  # Generates a 32-character hexadecimal string
 app = Flask(__name__)
 app.secret_key = "your_secret_key_here"  # Replace with your own secret key, needed for session management
 
@@ -83,7 +84,7 @@ def generate_data(N, mu, beta0, beta1, sigma2, S):
     # TODO 9: Return data needed for further analysis, including slopes and intercepts
     # Calculate proportions of slopes and intercepts more extreme than observed
     slope_more_extreme = sum(s > slope for s in slopes) / S
-    intercept_more_extreme = sum(i < intercept for i in intercepts) / S
+    intercept_extreme = sum(i < intercept for i in intercepts) / S
 
     # Return data needed for further analysis
     return (
